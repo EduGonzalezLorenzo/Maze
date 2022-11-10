@@ -4,8 +4,11 @@ services:
     image: tomcat:9.0
     ports:
       - "8080:8080"
+      - "5005:5005"
     volumes:
       - "./webapps:/usr/local/tomcat/webapps"
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
   mysql:
     image: mysql
     volumes:
