@@ -21,7 +21,7 @@
 <body class="text-center bg-primary container">
     <h1>Elige el nivel que quieres jugar:</h1>
     <article class="bg-light row justify-content-center">
-            <form  action="/game" method="GET">
+            <form  action="/select" method="POST">
             <label for="mazeMap">Introduzca un usuario para empezar:</label>
             <select name="mazeMap" id="mazeMap">
                 <option value="1">Principiante</option>
