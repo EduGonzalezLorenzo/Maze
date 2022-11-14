@@ -23,7 +23,7 @@ public class selectLevelController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int mazeMapID = Integer.parseInt(req.getParameter("mazeMap"));
-        MazeMap mazeMap = mazeMapService.getMazeMap(mazeMapID);
+        MazeMap mazeMap = mazeMapService.createMazeMap(mazeMapID);
         req.setAttribute("map",mazeMap);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
         dispatcher.forward(req, resp);
