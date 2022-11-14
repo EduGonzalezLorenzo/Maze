@@ -1,8 +1,8 @@
 package com.liceu.geom.controllers;
 
+import com.liceu.geom.model.Game;
 import com.liceu.geom.model.MazeMap;
-import com.liceu.geom.services.MazeMapService;
-
+import com.liceu.geom.services.GameService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet("/select")
 public class selectLevelController extends HttpServlet {
-    MazeMapService mazeMapService = new MazeMapService();
+    GameService gameService = new GameService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/selectLevel.jsp");
@@ -22,9 +22,9 @@ public class selectLevelController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int mazeMapID = Integer.parseInt(req.getParameter("mazeMap"));
-        MazeMap mazeMap = mazeMapService.createMazeMap(mazeMapID);
-        req.setAttribute("map",mazeMap);
+        int mazeMapType = Integer.parseInt(req.getParameter("mazeMap"));
+        //Game game = gameService.createNewGame(mazeMapType);
+        req.setAttribute("game",mazeMapType);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
         dispatcher.forward(req, resp);
     }

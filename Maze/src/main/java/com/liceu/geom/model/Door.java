@@ -1,20 +1,15 @@
 package com.liceu.geom.model;
 
 public class Door implements Side{
-    private boolean status;
+    private boolean open;
     private Room roomTo, roomFrom;
 
-    public Door(Room roomTo, Room roomFrom) {
-        this.roomTo = roomTo;
-        this.roomFrom = roomFrom;
+    public boolean isOpen() {
+        return open;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setOpen(boolean open) {
+        this.open = open;
     }
 
     public Room getRoomTo() {
