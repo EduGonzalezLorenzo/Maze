@@ -1,9 +1,35 @@
 package com.liceu.geom.services;
 
-import com.liceu.geom.model.Player;
+import com.liceu.geom.model.*;
+
+import java.util.Map;
 
 public class PlayerService {
-    public Player generatePlayer() {
-        return new Player();
+    public static Player generatePlayer(MazeMap mazeMap) {
+        Player player = new Player();
+        for (Map.Entry<Integer, Room> entry: mazeMap.getRoomList().entrySet()) {
+            Room room = entry.getValue();
+            if (room.isStart()){
+                player.setLocation(room);
+            }
+        }
+        return player;
     }
+
+    public static int getCoinsAmount(Player player) {
+        int coins = 0;
+        for (Item item : player.getInventory()) {
+            if (item instanceof Coin) coins++;
+        }
+        return coins;
+    }
+
+    public static int getKeysAmount(Player player) {
+        int keys = 0;
+        for (Item item : player.getInventory()) {
+            if (item instanceof DoorKey) keys++;
+        }
+        return keys;
+    }
+
 }

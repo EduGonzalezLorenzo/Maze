@@ -1,5 +1,7 @@
 package com.liceu.geom.model;
 
+import java.util.List;
+
 public class Door implements Side{
     private boolean open;
     private Room roomTo, roomFrom;
@@ -29,13 +31,7 @@ public class Door implements Side{
     }
 
     @Override
-    public void interactSide(Player player) {
-        //Check si abierta
-            //Si abierta ir a la habitación y return true
-
-            //Si esta cerrada
-                //Check si player tiene la llave
-                    //Si la tiene abrir la puerta
-                    //Si no la tiene avisar de que no la tiene
+    public String interactSide(Player player) {
+        return null;
     }
 }

@@ -1,20 +1,10 @@
 package com.liceu.geom.model;
 
 public class Game {
-    int id;
-
     private Player player;
     private MazeMap mazeMap;
 
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private boolean victory = false;
 
     public Player getPlayer() {
         return player;
@@ -30,5 +20,13 @@ public class Game {
 
     public void setMazeMap(MazeMap mazeMap) {
         this.mazeMap = mazeMap;
+    }
+
+    public boolean isVictory() {
+        return victory;
+    }
+
+    public void setVictory(boolean victory) {
+        this.victory = victory;
     }
 }

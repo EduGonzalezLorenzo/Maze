@@ -7,5 +7,5 @@ public interface Side {
         EAST,
         WEST
     }
-    void interactSide(Player player);
+    String interactSide(Player player);
 }

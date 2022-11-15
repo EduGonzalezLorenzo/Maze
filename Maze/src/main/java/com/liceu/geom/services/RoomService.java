@@ -1,6 +1,6 @@
 package com.liceu.geom.services;
 
-import com.liceu.geom.model.Room;
+import com.liceu.geom.model.*;
 
 public class RoomService {
     public static Room createRoom(int roomID) {
@@ -8,4 +8,6 @@ public class RoomService {
         room.setRoomID(roomID);
         return room;
     }
+
+
 }

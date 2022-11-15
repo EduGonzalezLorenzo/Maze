@@ -1,9 +1,12 @@
 package com.liceu.geom.model;
 
+import com.mysql.cj.exceptions.StreamingNotifiable;
+
 public class DoorKey implements Item{
     int id;
     Door door;
 
+    String name;
     int value;
 
     public int getId() {
@@ -30,4 +33,11 @@ public class DoorKey implements Item{
         this.value = value;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

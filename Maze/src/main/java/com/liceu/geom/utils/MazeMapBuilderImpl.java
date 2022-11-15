@@ -24,13 +24,13 @@ public class MazeMapBuilderImpl implements MazeMapBuilder{
     }
 
     @Override
-    public void buildDoor(int roomFrom, int roomTo, Side.Directions dir) {
+    public void buildDoorWithKey(int roomFrom, int roomTo, Side.Directions dir) {
         Door door = buildDoorInternal(roomFrom, roomTo, dir);
         door.setOpen(true);
     }
 
     @Override
-    public void buildDoor(int roomFrom, int roomTo, Side.Directions dir, DoorKey key) {
+    public void buildDoorWithKey(int roomFrom, int roomTo, Side.Directions dir, DoorKey key) {
         Door door = buildDoorInternal(roomFrom, roomTo, dir);
         key.setDoor(door);
     }
@@ -51,7 +51,6 @@ public class MazeMapBuilderImpl implements MazeMapBuilder{
             case SOUTH -> Side.Directions.NORTH;
             case EAST -> Side.Directions.WEST;
             case WEST -> Side.Directions.EAST;
-            default -> throw new RuntimeException();
         };
     }
 
@@ -63,5 +62,14 @@ public class MazeMapBuilderImpl implements MazeMapBuilder{
     @Override
     public MazeMap getMaze() {
         return this.mazeMap;
+    }
+
+    public void putCoinInRoom(int nRoom, Coin coin) {
+        mazeMap.getRoom(nRoom).addItem(coin);
+    }
+
+    @Override
+    public void setStart(int nRoom) {
+        this.mazeMap.getRoom(nRoom).setStart(true);
     }
 }

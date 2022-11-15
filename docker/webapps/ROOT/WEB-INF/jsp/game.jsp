@@ -23,6 +23,13 @@
     <article class="bg-light row justify-content-center">
             <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
     </article>
-    <p>${game}</p>
+    
+    <script type="application/json">
+        ${myjson}
+    </script>
+    <script>
+        let dataScript = document.getElementById("mydata").textContent;
+        let data = JSON.parse(dataScript);
+    </script>
 </body>
 </html>

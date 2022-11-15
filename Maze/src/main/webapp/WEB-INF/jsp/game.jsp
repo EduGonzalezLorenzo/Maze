@@ -23,6 +23,22 @@
     <article class="bg-light row justify-content-center">
             <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
     </article>
-    <p>${game}</p>
+    <article>
+     <form  action="/nav" method="GET">
+            <label for="mazeMap">Selecciones un nivel:</label>
+            <select name="mazeMap" id="mazeMap">
+                <option value="1">Tutorial</option>
+                <option value="2">Normal</option>
+            </select>
+            <input type="submit" value="Jugar">
+        </form>
+    </article>
+    <script type="application/json">
+        ${myjson}
+    </script>
+    <script>
+        let dataScript = document.getElementById("mydata").textContent;
+        let data = JSON.parse(dataScript);
+    </script>
 </body>
 </html>
