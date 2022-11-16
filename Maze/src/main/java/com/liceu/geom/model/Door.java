@@ -34,4 +34,9 @@ public class Door implements Side{
     public String interactSide(Player player) {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return this.open ? "Open door" : "Close door";
+    }
 }

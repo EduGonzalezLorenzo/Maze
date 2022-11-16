@@ -10,7 +10,7 @@
     <title>MazmorraJuego</title>
 </head>
 
-<body class="text-center bg-primary" onload="drawBoard();">
+<body class="text-center bg-primary" onload="drawCanvas();">
     <h1>Mazmorra Juego</h1>
     <article class="bg-light justify-content-center">
             <canvas id="canvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
@@ -22,6 +22,7 @@
         let dataScript = document.getElementById("mydata").textContent;
         let data = JSON.parse(dataScript);
     </script> -->
-    <script src="../js/canvas.js"></script>
+    <!-- <script src="/js/canvas.js"></script> -->
+    <script src="/Maze/src/main/webapp/js/canvas.js"></script>
 </body>
 </html>

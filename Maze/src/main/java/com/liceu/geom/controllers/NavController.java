@@ -19,16 +19,17 @@ public class NavController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
-
+        String msg;
         String dir = req.getParameter("dir");
-        if (dir == null) GameService.chargeCurrentLocation(game);
-        String msg = GameService.movePlayer(game, dir);
+
+        if (dir != null) msg = GameService.movePlayer(game, dir);
+        else msg = GameService.chargeCurrentLocation(game);
 
         String json = GameService.getJsonInfo(game);
 
-        req.setAttribute("json", json);
+        req.setAttribute("gameJson", json);
         req.setAttribute("msg", msg);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/navigation.jsp");
         dispatcher.forward(req, resp);
     }
 

@@ -16,20 +16,5 @@ public class PlayerService {
         return player;
     }
 
-    public static int getCoinsAmount(Player player) {
-        int coins = 0;
-        for (Item item : player.getInventory()) {
-            if (item instanceof Coin) coins++;
-        }
-        return coins;
-    }
-
-    public static int getKeysAmount(Player player) {
-        int keys = 0;
-        for (Item item : player.getInventory()) {
-            if (item instanceof DoorKey) keys++;
-        }
-        return keys;
-    }
 
 }

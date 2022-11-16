@@ -29,10 +29,10 @@ public class GameController extends HttpServlet {
             return;
         }
 
-        String json = GameService.getJsonInfo(game);
+        String gameJson = GameService.getJsonInfo(game);
 
-        req.setAttribute("json", json);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/game.jsp");
+        req.setAttribute("gameJson", gameJson);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/navigation.jsp");
         dispatcher.forward(req, resp);
     }
 

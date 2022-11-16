@@ -8,20 +8,24 @@ public class GameService {
 
     public static String getJsonInfo(Game game) {
         Player player = game.getPlayer();
+        Room room = player.getLocation();
 
         JSONObject root = new JSONObject();
-        JSONObject sides = new JSONObject();
+        JSONObject roomInfo = new JSONObject();
         JSONObject playerInfo = new JSONObject();
 
-        sides.put("N", player.getLocation().getSide(Side.Directions.NORTH));
-        sides.put("S", player.getLocation().getSide(Side.Directions.SOUTH));
-        sides.put("E", player.getLocation().getSide(Side.Directions.EAST));
-        sides.put("W", player.getLocation().getSide(Side.Directions.WEST));
+        roomInfo.put("roomNumber", player.getLocation().getRoomID());
+        roomInfo.put("N", room.getSide(Side.Directions.NORTH).toString());
+        roomInfo.put("S", room.getSide(Side.Directions.SOUTH).toString());
+        roomInfo.put("E", room.getSide(Side.Directions.EAST).toString());
+        roomInfo.put("W", room.getSide(Side.Directions.WEST).toString());
+        roomInfo.put("Coins", ItemService.getCoinsAmount(room.getItems()));
+        roomInfo.put("Keys", ItemService.getKeysAmount(room.getItems()));
 
-        playerInfo.put("Coins", PlayerService.getCoinsAmount(player));
-        playerInfo.put("Keys", PlayerService.getKeysAmount(player));
+        playerInfo.put("Coins", ItemService.getCoinsAmount(player.getInventory()));
+        playerInfo.put("Keys", ItemService.getKeysAmount(player.getInventory()));
 
-        root.put("Room", sides);
+        root.put("Room", roomInfo);
         root.put("Player", playerInfo);
 
         return root.toJSONString();
@@ -45,7 +49,8 @@ public class GameService {
         };
     }
 
-    public static void chargeCurrentLocation(Game game) {
+    public static String chargeCurrentLocation(Game game) {
+        return null;
     }
 
     public Game createNewGame(int mazeMapType) {
