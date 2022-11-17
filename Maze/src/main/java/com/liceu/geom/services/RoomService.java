@@ -1,8 +1,6 @@
 package com.liceu.geom.services;
 
 import com.liceu.geom.model.*;
-
-import java.util.Collection;
 import java.util.List;
 
 public class RoomService {
@@ -29,12 +27,21 @@ public class RoomService {
     }
 
     public static String giveKeyToPlayer(Room room, Player player) {
-        //Revisar si el player tiene suficientes coins:
-            //Si las tiene se le quitan las monedas, se le da la llave y msg de exito.
-            //Si no se devuelve msg de fracaso.
-        DoorKey doorKey = ItemService.getKeyFromRoom(room);
-        ItemService.addItem(player.getInventory(), doorKey);
-        return "Has obtenido una llave!";
+        DoorKey doorKey = ItemService.getKey(room.getItems());
+        if (doorKey==null) return "No hay llave en esta habitación";
+        //TODO añadir error al intentarlo
+        int keyCost = doorKey.getValue();
+        if (ItemService.getCoinsAmount(player.getInventory()) >= keyCost){
+            for (int i = 0; i < keyCost; i++) {
+                ItemService.removeCoin(player.getInventory());
+            }
+            ItemService.addItem(player.getInventory(), doorKey);
+            return "Has obtenido una llave!";
+        }else {
+            ItemService.putKeyInRoom(room, doorKey);
+            return "Monedas insuficientes!";
+        }
+
     }
 
     public static String giveCoinToPlayer(Room room, Player player) {

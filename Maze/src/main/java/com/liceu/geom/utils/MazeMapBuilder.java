@@ -10,7 +10,7 @@ public interface MazeMapBuilder {
 
     void setGoal(int nroom);
 
-    void buildDoorWithKey(int roomFrom, int roomTo, Side.Directions dir);
+    void buildDoor(int roomFrom, int roomTo, Side.Directions dir);
 
     void buildDoorWithKey(int roomFrom, int roomTo, Side.Directions dir, DoorKey key);
 

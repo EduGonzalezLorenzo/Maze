@@ -3,7 +3,7 @@ package com.liceu.geom.model;
 import java.util.List;
 
 public class Door implements Side{
-    private boolean open;
+    private boolean open = true;
     private Room roomTo, roomFrom;
 
     public boolean isOpen() {
@@ -28,11 +28,6 @@ public class Door implements Side{
 
     public void setRoomFrom(Room roomFrom) {
         this.roomFrom = roomFrom;
-    }
-
-    @Override
-    public String interactSide(Player player) {
-        return null;
     }
 
     @Override

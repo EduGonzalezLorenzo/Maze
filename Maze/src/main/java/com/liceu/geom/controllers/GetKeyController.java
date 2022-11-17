@@ -2,7 +2,6 @@ package com.liceu.geom.controllers;
 
 import com.liceu.geom.model.*;
 import com.liceu.geom.services.RoomService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +25,6 @@ public class GetKeyController extends HttpServlet {
             resp.sendRedirect("/nav");
             return;
         }
-        game.setPlayer(player);
         session.setAttribute("game", game);
         session.setAttribute("status", status);
         resp.sendRedirect("/nav");

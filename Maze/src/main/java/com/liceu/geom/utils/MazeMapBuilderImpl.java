@@ -24,21 +24,21 @@ public class MazeMapBuilderImpl implements MazeMapBuilder{
     }
 
     @Override
-    public void buildDoorWithKey(int roomFrom, int roomTo, Side.Directions dir) {
+    public void buildDoor(int roomFrom, int roomTo, Side.Directions dir) {
         Door door = buildDoorInternal(roomFrom, roomTo, dir);
-        door.setOpen(true);
     }
 
     @Override
     public void buildDoorWithKey(int roomFrom, int roomTo, Side.Directions dir, DoorKey key) {
         Door door = buildDoorInternal(roomFrom, roomTo, dir);
+        door.setOpen(false);
         key.setDoor(door);
     }
 
     private Door buildDoorInternal(int roomFrom, int roomTo, Side.Directions dir) {
         Room r1 = mazeMap.getRoom(roomFrom);
         Room r2 = mazeMap.getRoom(roomTo);
-        Door door = DoorService.getDoor(r1, r2);
+        Door door = DoorService.buildDoor(r1, r2);
         r1.setSide(dir, door);
         r2.setSide(getOppositeSide(dir), door);
         return door;

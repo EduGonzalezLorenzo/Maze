@@ -33,21 +33,11 @@ public class GameService {
     }
 
     public static String movePlayer(Game game, String dir) {
-        Side.Directions direction = getDirection(dir);
+        Side.Directions direction = SideService.getDirection(dir);
         Player player = game.getPlayer();
         Room room = player.getLocation();
         Side roomSide = room.getSide(direction);
         return SideService.enterSide(player, roomSide);
-    }
-
-    private static Side.Directions getDirection(String dir) {
-        return switch (dir) {
-            case "N" -> Side.Directions.NORTH;
-            case "S" -> Side.Directions.SOUTH;
-            case "E" -> Side.Directions.EAST;
-            case "W" -> Side.Directions.WEST;
-            default -> null;
-        };
     }
 
     public Game createNewGame(int mazeMapType) {

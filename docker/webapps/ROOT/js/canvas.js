@@ -52,7 +52,6 @@ function drawArrows() {
     ctx.drawImage(righttArrow, 740, 540, 50, 50);
 }
 
-
 function drawCurrentInventory(player) {
     ctx.font = "25px gameFont";
     ctx.fillText("Coins", 650, 200);
@@ -63,13 +62,13 @@ function drawCurrentInventory(player) {
 
 function drawCurrentRoom(room) {
     drawSideHor(room.N, 10, 10, 550, 50);
-    drawSideVer(room.W, 10, 50, 50, 500);
+    drawSideVer(room.W, 10, 50, 50, 450);
     drawSideHor(room.S, 10, 500, 550, 50);
-    drawSideVer(room.E, 510, 50, 50, 500);
+    drawSideVer(room.E, 510, 50, 50, 450);
     drawItems(room);
     if(room.msg !== null){
-        ctx.font = "10px gameFont";
-        ctx.fillText(room.msg, 70, 80);
+        ctx.font = "15px gameFont";
+        ctx.fillText(room.msg, 100, 100);
     }
     ctx.font = "25px gameFont";
     ctx.fillText("Room", 650, 100);
@@ -116,10 +115,10 @@ function drawPlayerItems(player) {
 }
 
 canvas.addEventListener("mousedown", function (event) {
-    clickHandler();
+    clickAnalizer();
 });
 
-function clickHandler() {
+function clickAnalizer() {
     const boundingRect = canvas.getBoundingClientRect();
     const posX = (Math.floor(event.clientX - boundingRect.left));
     const posY = (Math.floor(event.clientY - boundingRect.top));
@@ -132,34 +131,44 @@ function manageCoordenades(posX, posY) {
     checkArrowClick(posX, posY);
     checkCoinClick(posX, posY);
     checkKeyClick(posX, posY);
+    checkDoorClik(posX, posY);
+}
+
+function checkDoorClik(posX, posY){
+    if (posX > 225 && posX < 335 && posY > 10 && posY < 60) {
+        window.location.assign("/open?dir=N");
+    }
+    if (posX > 10 && posX < 60 && posY > 230 && posY < 320) {
+        window.location.assign("/open?dir=W");
+    }
+    if (posX > 225 && posX < 335 && posY > 500 && posY < 550) {
+        window.location.assign("/open?dir=S");
+    }
+    if (posX > 510 && posX < 560 && posY > 230 && posY < 320) {
+        window.location.assign("/open?dir=E");
+    }
 }
 
 function checkCoinClick(posX, posY) {
     if (posX > 100 && posX < 180 && posY > 400 && posY < 480) {
-        console.log("UP");
-        window.location.assign("http://localhost:8080/getcoin");
+        window.location.assign("/getcoin");
     }
 }
 
 function checkKeyClick(posX, posY) {
     if (posX > 400 && posX < 480 && posY > 400 && posY < 480) {
-        console.log("UP");
-        window.location.assign("http://localhost:8080/getkey");
+        window.location.assign("/getkey");
     }
 }
 
 function checkArrowClick(posX, posY) {
     if (posX > 680 && posX < 730 && posY > 480 && posY < 540) {
-        console.log("UP");
-        window.location.assign("http://localhost:8080/nav?dir=N");
+        window.location.assign("/nav?dir=N");
     } else if (posX > 620 && posX < 670 && posY > 540 && posY < 590) {
-        console.log("LEFT");
-        window.location.assign("http://localhost:8080/nav?dir=W");
+        window.location.assign("/nav?dir=W");
     } else if (posX > 680 && posX < 730 && posY > 540 && posY < 590) {
-        console.log("DOWN");
-        window.location.assign("http://localhost:8080/nav?dir=S");
+        window.location.assign("/nav?dir=S");
     } else if (posX > 740 && posX < 790 && posY > 540 && posY < 590) {
-        console.log("RIGHT");
-        window.location.assign("http://localhost:8080/nav?dir=E");
+        window.location.assign("/nav?dir=E");
     }
 }

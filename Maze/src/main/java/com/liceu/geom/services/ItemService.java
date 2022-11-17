@@ -27,21 +27,39 @@ public class ItemService {
         return inventory;
     }
 
-    public static List<Item> removeCoin(List<Item> items) {
-        items.removeIf(item -> item instanceof Coin);
-        return items;
+    public static void removeCoin(List<Item> items) {
+        for (Item item : items) {
+            if (item instanceof Coin) {
+                items.remove(item);
+                return;
+            }
+        }
     }
 
-    public static DoorKey getKeyFromRoom(Room room) {
-        List<Item> roomItems = room.getItems();
-        for (Item item : roomItems) {
+    public static DoorKey getKey(List<Item> items) {
+        for (Item item : items) {
             if (item instanceof DoorKey) {
-                roomItems.remove(item);
-                room.setItems(roomItems);
+                items.remove(item);
                 return (DoorKey) item;
             }
         }
         return null;
     }
 
+    public static void putKeyInRoom(Room room, DoorKey doorKey) {
+        room.getItems().add(doorKey);
+    }
+
+    public static DoorKey getSpecificKey(List<Item> items, Door door) {
+        for (Item item : items) {
+            if (item instanceof DoorKey) {
+                DoorKey candidateKey = (DoorKey) item;
+                if (candidateKey.getDoor() == door) {
+                    items.remove(item);
+                    return candidateKey;
+                }
+            }
+        }
+        return null;
+    }
 }
