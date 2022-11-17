@@ -9,7 +9,7 @@ public class SideService {
         if (door.isOpen()) {
             Room room = getOtherRoom(player.getLocation(), door);
             player.setLocation(room);
-            return "Accediento a nueva sala";
+            return null;
         } else {
             return "La puerta esta cerrada.";
         }

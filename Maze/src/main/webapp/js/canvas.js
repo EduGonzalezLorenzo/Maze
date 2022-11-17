@@ -1,14 +1,8 @@
 //El canvas sobre el que se dibujará el tablero
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-ctx.font = "20px gameFont";
 
-let columns = 20;
-let rows = 15;
-
-let cellWidth = canvas.width / columns;
-let cellHeight = canvas.height / rows;
-
+//Declaración de imagenes.
 const topArrow = new Image();
 const botArrow = new Image();
 const righttArrow = new Image();
@@ -21,6 +15,9 @@ const DoorOpenVer = new Image();
 const DoorClosedHor = new Image();
 const DoorClosedVer = new Image();
 
+const key = new Image();
+const coin = new Image();
+
 topArrow.src = "../img/Arrow_Up.png";
 leftArrow.src = "../img/Arrow_Left.png";
 botArrow.src = "../img/Arrow_Down.png";
@@ -32,6 +29,9 @@ DoorOpenHor.src = "../img/PuertaAbiertaHorizontal.png";
 DoorOpenVer.src = "../img/PuertaAbiertaVertical.png";
 DoorClosedHor.src = "../img/PuertaCerradaHorizontal.png";
 DoorClosedVer.src = "../img/PuertaCerradaVertical.png";
+
+key.src = "../img/key.png";
+coin.src = "../img/coin.png";
 
 function drawCanvas() {
     drawArrows();
@@ -53,7 +53,8 @@ function drawArrows() {
 }
 
 
-function drawCurrentInventory(player){
+function drawCurrentInventory(player) {
+    ctx.font = "25px gameFont";
     ctx.fillText("Coins", 650, 200);
     ctx.fillText(player.Coins, 680, 225);
     ctx.fillText("Keys", 650, 275);
@@ -61,15 +62,29 @@ function drawCurrentInventory(player){
 }
 
 function drawCurrentRoom(room) {
-    drawSideHor(room.N, 10, 10, 600, 100);
-    drawSideVer(room.W, 10, 50, 100, 500);
-    drawSideHor(room.S, 10, 500, 600, 100);
-    drawSideVer(room.E, 510, 50, 100, 500);
+    drawSideHor(room.N, 10, 10, 550, 50);
+    drawSideVer(room.W, 10, 50, 50, 500);
+    drawSideHor(room.S, 10, 500, 550, 50);
+    drawSideVer(room.E, 510, 50, 50, 500);
+    drawItems(room);
+    if(room.msg !== null){
+        ctx.font = "10px gameFont";
+        ctx.fillText(room.msg, 70, 80);
+    }
+    ctx.font = "25px gameFont";
     ctx.fillText("Room", 650, 100);
     ctx.fillText(room.roomNumber, 680, 125);
 }
 
-function drawSideHor(side, x, y, width, height){
+function drawItems(room) {
+    if (room.Coins == 1) {
+        ctx.drawImage(coin, 100, 400, 80, 80);
+    } if (room.Keys == 1) {
+        ctx.drawImage(key, 400, 400, 80, 80);
+    }
+}
+
+function drawSideHor(side, x, y, width, height) {
     switch (side) {
         case "wall":
             ctx.drawImage(wallHor, x, y, width, height);
@@ -82,7 +97,7 @@ function drawSideHor(side, x, y, width, height){
     }
 }
 
-function drawSideVer(side, x, y, width, height){
+function drawSideVer(side, x, y, width, height) {
     switch (side) {
         case "wall":
             ctx.drawImage(wallVer, x, y, width, height);
@@ -115,6 +130,22 @@ function clickHandler() {
 
 function manageCoordenades(posX, posY) {
     checkArrowClick(posX, posY);
+    checkCoinClick(posX, posY);
+    checkKeyClick(posX, posY);
+}
+
+function checkCoinClick(posX, posY) {
+    if (posX > 100 && posX < 180 && posY > 400 && posY < 480) {
+        console.log("UP");
+        window.location.assign("http://localhost:8080/getcoin");
+    }
+}
+
+function checkKeyClick(posX, posY) {
+    if (posX > 400 && posX < 480 && posY > 400 && posY < 480) {
+        console.log("UP");
+        window.location.assign("http://localhost:8080/getkey");
+    }
 }
 
 function checkArrowClick(posX, posY) {

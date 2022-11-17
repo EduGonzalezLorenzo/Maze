@@ -6,7 +6,7 @@ import org.json.simple.JSONObject;
 public class GameService {
     Game game = new Game();
 
-    public static String getJsonInfo(Game game) {
+    public static String getJsonInfo(Game game, String msg) {
         Player player = game.getPlayer();
         Room room = player.getLocation();
 
@@ -21,6 +21,7 @@ public class GameService {
         roomInfo.put("W", room.getSide(Side.Directions.WEST).toString());
         roomInfo.put("Coins", ItemService.getCoinsAmount(room.getItems()));
         roomInfo.put("Keys", ItemService.getKeysAmount(room.getItems()));
+        roomInfo.put("msg", msg);
 
         playerInfo.put("Coins", ItemService.getCoinsAmount(player.getInventory()));
         playerInfo.put("Keys", ItemService.getKeysAmount(player.getInventory()));
@@ -47,10 +48,6 @@ public class GameService {
             case "W" -> Side.Directions.WEST;
             default -> null;
         };
-    }
-
-    public static String chargeCurrentLocation(Game game) {
-        return null;
     }
 
     public Game createNewGame(int mazeMapType) {
