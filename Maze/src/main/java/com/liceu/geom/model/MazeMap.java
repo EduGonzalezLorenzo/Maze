@@ -1,13 +1,11 @@
 package com.liceu.geom.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MazeMap {
     int id;
-    String mazeName;
+    String name;
 
     private Map<Integer, Room> roomList = new HashMap<>();
 
@@ -19,12 +17,12 @@ public class MazeMap {
         this.id = id;
     }
 
-    public String getMazeName() {
-        return mazeName;
+    public String getName() {
+        return name;
     }
 
-    public void setMazeName(String mazeName) {
-        this.mazeName = mazeName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Map<Integer, Room> getRoomList() {

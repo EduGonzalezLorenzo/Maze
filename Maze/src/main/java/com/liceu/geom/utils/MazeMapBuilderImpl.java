@@ -9,6 +9,11 @@ public class MazeMapBuilderImpl implements MazeMapBuilder{
     private MazeMap mazeMap = new MazeMap();
 
     @Override
+    public void setName(String name) {
+        this.mazeMap.setName(name);
+    }
+
+    @Override
     public void buildRoom(int nRoom) {
         Room room = RoomService.createRoom(nRoom);
         room.setSide(Side.Directions.NORTH, new Wall());

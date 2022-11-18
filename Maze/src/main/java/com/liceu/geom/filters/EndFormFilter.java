@@ -21,6 +21,7 @@ public class EndFormFilter extends HttpFilter {
             return;
         } if (!game.isVictory()) {
             res.sendRedirect("/nav");
+            return;
             //TODO añadir error
         }
         chain.doFilter(req,res);

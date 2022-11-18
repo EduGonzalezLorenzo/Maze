@@ -4,7 +4,6 @@ import com.liceu.geom.model.Coin;
 import com.liceu.geom.model.DoorKey;
 import com.liceu.geom.model.MazeMap;
 import com.liceu.geom.model.Side;
-import com.liceu.geom.utils.MazeMapBuilder;
 import com.liceu.geom.utils.MazeMapBuilderImpl;
 
 import java.util.stream.IntStream;
@@ -50,6 +49,8 @@ public class MazeMapService {
         //Asignación de salida y meta
         mazeMapBuilder.setStart(2);
         mazeMapBuilder.setGoal(1);
+
+        mazeMapBuilder.setName("Tutorial");
 
         return mazeMapBuilder.getMaze();
     }
@@ -105,6 +106,9 @@ public class MazeMapService {
         //Asignación de salida y meta
         mazeMapBuilder.setStart(3);
         mazeMapBuilder.setGoal(2);
+
+        mazeMapBuilder.setName("Normal");
+
         return mazeMapBuilder.getMaze();
     }
 

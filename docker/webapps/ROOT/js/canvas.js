@@ -33,10 +33,14 @@ DoorClosedVer.src = "../img/PuertaCerradaVertical.png";
 key.src = "../img/key.png";
 coin.src = "../img/coin.png";
 
+//Carga del json
+const dataScript = document.getElementById("gameJson").textContent;
+const data = JSON.parse(dataScript);
+
+//Funciones
 function drawCanvas() {
+    ctx.font = "gameFont";
     drawArrows();
-    let dataScript = document.getElementById("gameJson").textContent;
-    let data = JSON.parse(dataScript);
     let room = new Object();
     let player = new Object();
     room = data.Room;
@@ -53,7 +57,7 @@ function drawArrows() {
 }
 
 function drawCurrentInventory(player) {
-    ctx.font = "25px";
+    ctx.font = "25px gameFont ";
     ctx.fillText("Coins", 650, 200);
     ctx.fillText(player.Coins, 680, 225);
     ctx.fillText("Keys", 650, 275);
@@ -66,11 +70,11 @@ function drawCurrentRoom(room) {
     drawSideHor(room.S, 10, 500, 550, 50);
     drawSideVer(room.E, 510, 50, 50, 450);
     drawItems(room);
-    if(room.msg !== null){
-        ctx.font = "15px";
+    if (room.msg !== null) {
+        ctx.font = "15px gameFont ";
         ctx.fillText(room.msg, 100, 100);
     }
-    ctx.font = "25px";
+    ctx.font = "25px gameFont";
     ctx.fillText("Room", 650, 100);
     ctx.fillText(room.roomNumber, 680, 125);
 }
@@ -109,11 +113,6 @@ function drawSideVer(side, x, y, width, height) {
     }
 }
 
-function drawPlayerItems(player) {
-    console.log("Coins: " + player.Coins);
-    console.log("Keys: " + player.Keys);
-}
-
 canvas.addEventListener("mousedown", function (event) {
     clickAnalizer();
 });
@@ -122,9 +121,13 @@ function clickAnalizer() {
     const boundingRect = canvas.getBoundingClientRect();
     const posX = (Math.floor(event.clientX - boundingRect.left));
     const posY = (Math.floor(event.clientY - boundingRect.top));
-    console.log(posX + " / " + posY);
-
-    manageCoordenades(posX, posY);
+    let game = new Object();
+    game = data.Game;
+    if (game.gameStatus == true) {
+        window.location.assign("/endform");
+    } else {
+        manageCoordenades(posX, posY);
+    }
 }
 
 function manageCoordenades(posX, posY) {
@@ -134,7 +137,7 @@ function manageCoordenades(posX, posY) {
     checkDoorClik(posX, posY);
 }
 
-function checkDoorClik(posX, posY){
+function checkDoorClik(posX, posY) {
     if (posX > 225 && posX < 335 && posY > 10 && posY < 60) {
         window.location.assign("/open?dir=N");
     }

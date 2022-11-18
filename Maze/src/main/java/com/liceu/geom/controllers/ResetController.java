@@ -1,5 +1,8 @@
 package com.liceu.geom.controllers;
 
+import com.liceu.geom.model.Game;
+import com.liceu.geom.services.GameService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +17,9 @@ public class ResetController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        Game game = (Game) session.getAttribute("game");
+        game.setVictory(false);
+        req.setAttribute("gameJson", null);
         session.setAttribute("game", null);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/start.jsp");
         dispatcher.forward(req, resp);

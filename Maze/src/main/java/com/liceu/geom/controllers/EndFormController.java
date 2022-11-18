@@ -2,6 +2,7 @@ package com.liceu.geom.controllers;
 
 import com.liceu.geom.model.Game;
 import com.liceu.geom.model.Player;
+import com.liceu.geom.services.GameService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,17 +23,21 @@ public class EndFormController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        Game game = (Game) session.getAttribute("game");
-        Player player = game.getPlayer();
-        if (req.getAttribute("playerName")==null){
+        String playerName = req.getParameter("playerName");
+        if (playerName.equals("")) {
             req.setAttribute("logError", "Introduce un nombre!");
             RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/endform.jsp");
             dispatcher.forward(req, resp);
-        }else {
-            String playerName = req.getAttribute("playerName").toString();
+        } else {
+            HttpSession session = req.getSession();
+            Game game = (Game) session.getAttribute("game");
+            Player player = game.getPlayer();
             player.setName(playerName);
-            resp.sendRedirect("/nav");
+            GameService.addPlayerToWinners(game);
+            game.setVictory(false);
+            req.setAttribute("gameJson", null);
+            session.setAttribute("game", null);
+            resp.sendRedirect("/winners");
         }
     }
 }

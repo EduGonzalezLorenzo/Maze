@@ -6,6 +6,8 @@ import com.liceu.geom.model.MazeMap;
 import com.liceu.geom.model.Side;
 
 public interface MazeMapBuilder {
+    public void setName(String tutorial);
+
     public void buildRoom(int nRoom);
 
     void setGoal(int nroom);

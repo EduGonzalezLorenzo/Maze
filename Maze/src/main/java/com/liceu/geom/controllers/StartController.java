@@ -17,6 +17,13 @@ public class StartController extends HttpServlet {
     GameService gameService = new GameService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        Game game = (Game) session.getAttribute("game");
+        if (game != null){
+            game.setVictory(false);
+            req.setAttribute("gameJson", null);
+            session.setAttribute("game", null);
+        }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/start.jsp");
         dispatcher.forward(req, resp);
     }
