@@ -36,7 +36,7 @@ public class RoomService {
                 ItemService.removeCoin(player.getInventory());
             }
             ItemService.addItem(player.getInventory(), doorKey);
-            return "Has obtenido una llave!";
+            return doorKey.getName() + " recogida!";
         }else {
             ItemService.putKeyInRoom(room, doorKey);
             return "Monedas insuficientes!";

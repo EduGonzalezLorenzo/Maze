@@ -2,3 +2,7 @@
     font-family: 'gameFont';
     src: url('../css/PressStart2P-Regular.ttf');
   }
+
+  *{
+    font-family: gameFont;
+  }

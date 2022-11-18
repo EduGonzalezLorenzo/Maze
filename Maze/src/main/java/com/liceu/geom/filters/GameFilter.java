@@ -21,7 +21,6 @@ public class GameFilter extends HttpFilter {
             res.sendRedirect("/start");
             return;
         }
-        req.setAttribute("game", game);
         chain.doFilter(req,res);
     }
 }

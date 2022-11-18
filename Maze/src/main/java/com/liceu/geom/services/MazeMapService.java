@@ -30,7 +30,7 @@ public class MazeMapService {
 
         //Creación de items
         DoorKey key1 = new DoorKey();
-        key1.setName("Key Goal Room");
+        key1.setName("Llave final");
         key1.setValue(2);
         Coin coin = new Coin();
         coin.setId(1);
@@ -65,13 +65,13 @@ public class MazeMapService {
 
         //Creación de items
         DoorKey key1 = new DoorKey();
-        key1.setName("Key Goal Room");
+        key1.setName("Llave final");
         key1.setValue(2);
         DoorKey key2 = new DoorKey();
-        key2.setName("Key Room 1");
+        key2.setName("Llave sur");
         key2.setValue(1);
         DoorKey key3 = new DoorKey();
-        key3.setName("Key Room 6");
+        key3.setName("Llave norte");
         key3.setValue(1);
 
         Coin coin1 = new Coin();

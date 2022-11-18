@@ -53,7 +53,7 @@ function drawArrows() {
 }
 
 function drawCurrentInventory(player) {
-    ctx.font = "25px gameFont";
+    ctx.font = "25px";
     ctx.fillText("Coins", 650, 200);
     ctx.fillText(player.Coins, 680, 225);
     ctx.fillText("Keys", 650, 275);
@@ -67,10 +67,10 @@ function drawCurrentRoom(room) {
     drawSideVer(room.E, 510, 50, 50, 450);
     drawItems(room);
     if(room.msg !== null){
-        ctx.font = "15px gameFont";
+        ctx.font = "15px";
         ctx.fillText(room.msg, 100, 100);
     }
-    ctx.font = "25px gameFont";
+    ctx.font = "25px";
     ctx.fillText("Room", 650, 100);
     ctx.fillText(room.roomNumber, 680, 125);
 }
