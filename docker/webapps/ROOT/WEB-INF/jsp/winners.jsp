@@ -33,7 +33,7 @@
                 </tr>
                 <c:forEach var="winner" items="${winners}">
                         <tr style="margin-bottom:10px; border: 1px solid black;">
-                            <td style="margin-bottom:10px; border: 1px solid black;">1</td>
+                            <td style="margin-bottom:10px; border: 1px solid black;"></td>
                             <td style="margin-bottom:10px; border: 1px solid black;">${winner.id}</td>
                             <td style="margin-bottom:10px; border: 1px solid black;">${winner.player.name}</td>
                             <td style="margin-bottom:10px; border: 1px solid black;">${winner.mazeMap.name}</td>

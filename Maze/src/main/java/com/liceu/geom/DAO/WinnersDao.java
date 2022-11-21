@@ -1,11 +1,10 @@
 package com.liceu.geom.DAO;
 
-import com.liceu.geom.model.Game;
-import com.liceu.geom.model.Player;
+import com.liceu.geom.model.Winner;
 
 import java.util.List;
 
 public interface WinnersDao {
-    public void addToWinners(Game game);
-    public List<Game> getWinners();
+    public void addToWinners(Winner winner);
+    public List<Winner> getWinners();
 }

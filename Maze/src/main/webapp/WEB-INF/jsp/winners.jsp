@@ -33,11 +33,11 @@
                 </tr>
                 <c:forEach var="winner" items="${winners}">
                         <tr style="margin-bottom:10px; border: 1px solid black;">
-                            <td style="margin-bottom:10px; border: 1px solid black;"></td>
+                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.position}</td>
                             <td style="margin-bottom:10px; border: 1px solid black;">${winner.id}</td>
-                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.player.name}</td>
-                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.mazeMap.name}</td>
-                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.totalTime}</td>
+                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.playerName}</td>
+                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.mazeName.name}</td>
+                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.time}</td>
                         </tr>
                 </c:forEach>
             </table>

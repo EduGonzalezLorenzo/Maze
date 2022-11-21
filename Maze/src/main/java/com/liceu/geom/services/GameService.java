@@ -1,10 +1,12 @@
 package com.liceu.geom.services;
 
 import com.liceu.geom.DAO.WinnersDao;
-import com.liceu.geom.DAO.WinnersDaoImpl;
+import com.liceu.geom.DAO.WinnersDaoMySql;
 import com.liceu.geom.model.*;
 import org.json.simple.JSONObject;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class GameService {
@@ -48,13 +50,22 @@ public class GameService {
     }
 
     public static void addPlayerToWinners(Game game) {
-        WinnersDao winnersDao = new WinnersDaoImpl();
-        winnersDao.addToWinners(game);
+        WinnersDao winnersDao = new WinnersDaoMySql();
+        Winner winner = WinnerService.generateWinner(game);
+        winnersDao.addToWinners(winner);
     }
 
     public static void endGame(Game game) {
         game.setVictory(true);
         game.setTotalTime(System.currentTimeMillis() - game.getStartTime());
+
+    }
+
+    public static List<Winner> getWinners() {
+        WinnersDao winnersDao = new WinnersDaoMySql();
+        List <Winner> winners = winnersDao.getWinners();
+        winners = WinnerService.SortWinners(winners);
+        return winners;
     }
 
     public Game createNewGame(int mazeMapType) {

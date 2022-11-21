@@ -1,7 +1,5 @@
 package com.liceu.geom.controllers;
 
-import com.liceu.geom.DAO.WinnersDaoImpl;
-import com.liceu.geom.model.Game;
 import com.liceu.geom.services.GameService;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +14,7 @@ import java.io.IOException;
 public class WinnersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("winners", GameService.getWinnersJson());
+        req.setAttribute("winners", GameService.getWinners());
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/winners.jsp");
         dispatcher.forward(req, resp);
     }
