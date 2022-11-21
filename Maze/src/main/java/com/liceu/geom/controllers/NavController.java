@@ -28,9 +28,10 @@ public class NavController extends HttpServlet {
         Player player = game.getPlayer();
 
         if (player.getLocation().isGoal()) {
-            status = "VICTORIA! Click para continuar";
+            status = "WIN! Click para continuar";
             GameService.endGame(game);
         }
+        System.out.println(GameService.getGameJson(game, status));
         req.setAttribute("gameJson", GameService.getGameJson(game, status));
         session.setAttribute("status", null);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/navigation.jsp");

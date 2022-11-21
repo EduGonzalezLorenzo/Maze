@@ -23,6 +23,8 @@ public interface MazeMapBuilder {
     public void putCoinInRoom(int nRoom, Coin coin);
 
     void setStart(int nRoom);
+
+    void setID(int i);
 }
 
 

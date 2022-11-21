@@ -1,9 +1,11 @@
 package com.liceu.geom.model;
 
-public class Winner {
+public class Winner implements Comparable {
     private int id;
     private int position;
-    private long time;
+    private int timeInMilliseconds;
+
+    private String formattedTime;
     private String mazeName;
     private String playerName;
 
@@ -23,12 +25,20 @@ public class Winner {
         this.position = position;
     }
 
-    public long getTime() {
-        return time;
+    public int getTimeInMilliseconds() {
+        return timeInMilliseconds;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setTimeInMilliseconds(int timeInMilliseconds) {
+        this.timeInMilliseconds = timeInMilliseconds;
+    }
+
+    public String getFormattedTime() {
+        return formattedTime;
+    }
+
+    public void setFormattedTime(String formattedTime) {
+        this.formattedTime = formattedTime;
     }
 
     public String getMazeName() {
@@ -45,5 +55,15 @@ public class Winner {
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Winner winner = (Winner) o;
+        if (this.timeInMilliseconds > winner.timeInMilliseconds) {
+            return 1;
+        } else if (this.timeInMilliseconds == winner.timeInMilliseconds) {
+            return 0;
+        } else return -1;
     }
 }

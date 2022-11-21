@@ -28,8 +28,10 @@ public class RoomService {
 
     public static String giveKeyToPlayer(Room room, Player player) {
         DoorKey doorKey = ItemService.getKey(room.getItems());
-        if (doorKey==null) return "No hay llave en esta habitación";
-        //TODO añadir error al intentarlo
+        if (doorKey==null){
+            //TODO añadir error al intentarlo
+            return "No hay llave en esta habitación";
+        }
         int keyCost = doorKey.getValue();
         if (ItemService.getCoinsAmount(player.getInventory()) >= keyCost){
             for (int i = 0; i < keyCost; i++) {

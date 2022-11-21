@@ -52,6 +52,8 @@ public class MazeMapService {
 
         mazeMapBuilder.setName("Tutorial");
 
+        mazeMapBuilder.setID(1);
+
         return mazeMapBuilder.getMaze();
     }
 
@@ -107,7 +109,9 @@ public class MazeMapService {
         mazeMapBuilder.setStart(3);
         mazeMapBuilder.setGoal(2);
 
-        mazeMapBuilder.setName("Normal");
+        mazeMapBuilder.setName("Game");
+
+        mazeMapBuilder.setID(2);
 
         return mazeMapBuilder.getMaze();
     }

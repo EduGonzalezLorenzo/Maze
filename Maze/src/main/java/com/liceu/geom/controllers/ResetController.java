@@ -18,10 +18,9 @@ public class ResetController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
-        game.setVictory(false);
-        req.setAttribute("gameJson", null);
-        session.setAttribute("game", null);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/start.jsp");
-        dispatcher.forward(req, resp);
+        Game newGame = GameService.createNewGame(game.getMazeMap().getId());
+
+        session.setAttribute("game", newGame);
+        resp.sendRedirect("/nav");
     }
 }

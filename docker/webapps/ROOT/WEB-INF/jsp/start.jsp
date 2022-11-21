@@ -23,7 +23,7 @@
             <label for="mazeMap">Selecciones un nivel:</label>
             <select name="mazeMap" id="mazeMap">
                 <option value="1">Tutorial</option>
-                <option value="2">Normal</option>
+                <option value="2">Juego</option>
             </select>
             <input type="submit" value="Jugar">
         </form>

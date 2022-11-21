@@ -1,7 +1,5 @@
 package com.liceu.geom.model;
 
-import com.mysql.cj.exceptions.StreamingNotifiable;
-
 public class DoorKey implements Item{
     int id;
     Door door;

@@ -4,9 +4,6 @@ import com.liceu.geom.DAO.WinnersDao;
 import com.liceu.geom.DAO.WinnersDaoMySql;
 import com.liceu.geom.model.*;
 import org.json.simple.JSONObject;
-
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class GameService {
@@ -64,11 +61,10 @@ public class GameService {
     public static List<Winner> getWinners() {
         WinnersDao winnersDao = new WinnersDaoMySql();
         List <Winner> winners = winnersDao.getWinners();
-        winners = WinnerService.SortWinners(winners);
-        return winners;
+        return WinnerService.FormatWinners(winners);
     }
 
-    public Game createNewGame(int mazeMapType) {
+    public static Game createNewGame(int mazeMapType) {
         Game game = new Game();
         MazeMap mazeMap = MazeMapService.generateMazeMap(mazeMapType);
         Player player = PlayerService.generatePlayer(mazeMap);

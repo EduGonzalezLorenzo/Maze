@@ -19,14 +19,13 @@ public class WinnersDaoMySql implements WinnersDao {
             String query = "insert into winners (PlayerName, MazeName, Time) values (?,?,?)";
             PreparedStatement preparedStatement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, winner.getPlayerName());
-            preparedStatement.setString(1, winner.getMazeName());
-            preparedStatement.setLong(1, winner.getTime());
+            preparedStatement.setString(2, winner.getMazeName());
+            preparedStatement.setInt(3, (int) winner.getTimeInMilliseconds());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 winner.setId(id);
-                //return user; se podria hacer que devuelva el usuario creado para verificar que se ha creado correctamene
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -39,17 +38,17 @@ public class WinnersDaoMySql implements WinnersDao {
             List<Winner> allWinners = new ArrayList<>();
             Connection con = getConnection();
             Statement st = con.createStatement();
-            ResultSet resultSet = st.executeQuery("select * from figura");
+            ResultSet resultSet = st.executeQuery("select * from Winners");
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 String playerName = resultSet.getString(2);
                 String mazeName = resultSet.getString(3);
-                Long time = resultSet.getLong(4);
+                int time = resultSet.getInt(4);
                 Winner winner = new Winner();
                 winner.setId(id);
                 winner.setPlayerName(playerName);
                 winner.setMazeName(mazeName);
-                winner.setTime(time);
+                winner.setTimeInMilliseconds(time);
                 allWinners.add(winner);
             }
             return allWinners;

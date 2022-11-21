@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Todas las figuras</title>
+    <title>Winners</title>
 </head>
 
 <body class="bg-info">
@@ -36,8 +36,8 @@
                             <td style="margin-bottom:10px; border: 1px solid black;">${winner.position}</td>
                             <td style="margin-bottom:10px; border: 1px solid black;">${winner.id}</td>
                             <td style="margin-bottom:10px; border: 1px solid black;">${winner.playerName}</td>
-                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.mazeName.name}</td>
-                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.time}</td>
+                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.mazeName}</td>
+                            <td style="margin-bottom:10px; border: 1px solid black;">${winner.formattedTime}</td>
                         </tr>
                 </c:forEach>
             </table>

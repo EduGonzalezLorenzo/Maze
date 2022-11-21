@@ -14,7 +14,6 @@ import java.io.IOException;
 
 @WebServlet("/start")
 public class StartController extends HttpServlet {
-    GameService gameService = new GameService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -31,7 +30,7 @@ public class StartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int mapId = Integer.parseInt(req.getParameter("mazeMap"));
-        Game game = gameService.createNewGame(mapId);
+        Game game = GameService.createNewGame(mapId);
         HttpSession session = req.getSession();
         session.setAttribute("game", game);
         resp.sendRedirect("/nav");

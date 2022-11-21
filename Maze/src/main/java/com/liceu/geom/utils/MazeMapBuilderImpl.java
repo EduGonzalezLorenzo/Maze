@@ -77,4 +77,9 @@ public class MazeMapBuilderImpl implements MazeMapBuilder{
     public void setStart(int nRoom) {
         this.mazeMap.getRoom(nRoom).setStart(true);
     }
+
+    @Override
+    public void setID(int i) {
+        mazeMap.setId(i);
+    }
 }
