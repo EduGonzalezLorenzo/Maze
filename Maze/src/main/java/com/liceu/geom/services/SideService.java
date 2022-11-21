@@ -19,6 +19,7 @@ public class SideService {
         if (location.getRoomID() == door.getRoomFrom().getRoomID()) return door.getRoomTo();
         return door.getRoomFrom();
     }
+
     public static Side.Directions getDirection(String dir) {
         return switch (dir) {
             case "N" -> Side.Directions.NORTH;

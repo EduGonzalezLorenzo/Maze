@@ -21,7 +21,7 @@ public class GameFilter extends HttpFilter {
             res.sendRedirect("/start");
             return;
         }
-        if (game.isVictory()){
+        if (game.isVictory()) {
             res.sendRedirect("/endform");
             return;
         }

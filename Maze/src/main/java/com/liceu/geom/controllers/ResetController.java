@@ -3,7 +3,6 @@ package com.liceu.geom.controllers;
 import com.liceu.geom.model.Game;
 import com.liceu.geom.services.GameService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

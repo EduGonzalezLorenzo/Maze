@@ -18,7 +18,7 @@ public class StartController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
-        if (game != null){
+        if (game != null) {
             game.setVictory(false);
             req.setAttribute("gameJson", null);
             session.setAttribute("game", null);

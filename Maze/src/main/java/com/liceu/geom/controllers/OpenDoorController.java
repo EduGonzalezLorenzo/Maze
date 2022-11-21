@@ -1,8 +1,6 @@
 package com.liceu.geom.controllers;
 
 import com.liceu.geom.model.Game;
-import com.liceu.geom.model.Player;
-import com.liceu.geom.model.Room;
 import com.liceu.geom.services.DoorService;
 
 import javax.servlet.ServletException;
@@ -22,7 +20,7 @@ public class OpenDoorController extends HttpServlet {
         Game game = (Game) session.getAttribute("game");
         String status;
         String dir = req.getParameter("dir");
-        if (dir!=null){
+        if (dir != null) {
             status = DoorService.openDoor(game, dir);
             session.setAttribute("game", game);
             session.setAttribute("status", status);

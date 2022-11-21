@@ -126,14 +126,19 @@ function clickAnalizer() {
     if (game.gameStatus == true) {
         window.location.assign("/endform");
     } else {
-        manageCoordenades(posX, posY);
+        let room = new Object();
+        room = data.Room;
+        manageCoordenades(posX, posY, room);
     }
 }
 
-function manageCoordenades(posX, posY) {
+function manageCoordenades(posX, posY, room) {
+    if (room.Coins != 0) {
+        checkCoinClick(posX, posY);
+    } if (room.Keys != 0) {
+        checkKeyClick(posX, posY);
+    }
     checkArrowClick(posX, posY);
-    checkCoinClick(posX, posY);
-    checkKeyClick(posX, posY);
     checkDoorClik(posX, posY);
 }
 

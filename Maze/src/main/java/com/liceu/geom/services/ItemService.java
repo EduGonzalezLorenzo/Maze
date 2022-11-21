@@ -1,7 +1,6 @@
 package com.liceu.geom.services;
 
 import com.liceu.geom.model.*;
-import org.w3c.dom.ranges.DocumentRange;
 
 import java.util.List;
 
@@ -27,13 +26,14 @@ public class ItemService {
         return inventory;
     }
 
-    public static void removeCoin(List<Item> items) {
+    public static String removeCoin(List<Item> items) {
         for (Item item : items) {
             if (item instanceof Coin) {
                 items.remove(item);
-                return;
+                return "Has obtenido una moneda!";
             }
         }
+        return null;
     }
 
     public static DoorKey getKey(List<Item> items) {

@@ -5,7 +5,7 @@ import com.liceu.geom.services.DoorService;
 import com.liceu.geom.services.RoomService;
 
 
-public class MazeMapBuilderImpl implements MazeMapBuilder{
+public class MazeMapBuilderImpl implements MazeMapBuilder {
     private MazeMap mazeMap = new MazeMap();
 
     @Override

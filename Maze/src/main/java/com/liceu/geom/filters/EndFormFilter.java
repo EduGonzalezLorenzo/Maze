@@ -1,6 +1,7 @@
 package com.liceu.geom.filters;
 
 import com.liceu.geom.model.Game;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
@@ -16,14 +17,14 @@ public class EndFormFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
-        if (game == null){
+        if (game == null) {
             res.sendRedirect("/start");
             return;
-        } if (!game.isVictory()) {
+        }
+        if (!game.isVictory()) {
             res.sendRedirect("/nav");
             return;
-            //TODO añadir error
         }
-        chain.doFilter(req,res);
+        chain.doFilter(req, res);
     }
 }

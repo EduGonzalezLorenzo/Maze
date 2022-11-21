@@ -13,7 +13,7 @@ import static com.liceu.geom.DAO.MySqlDatabase.getConnection;
 
 public class WinnersDaoMySql implements WinnersDao {
     @Override
-    public void addToWinners(Winner winner) {
+    public Winner addToWinners(Winner winner) {
         try {
             Connection con = getConnection();
             String query = "insert into winners (PlayerName, MazeName, Time) values (?,?,?)";
@@ -26,10 +26,12 @@ public class WinnersDaoMySql implements WinnersDao {
             if (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 winner.setId(id);
+                return winner;
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new DAOException();
         }
+        return null;
     }
 
     @Override

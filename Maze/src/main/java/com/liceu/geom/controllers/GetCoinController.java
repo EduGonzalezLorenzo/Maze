@@ -1,8 +1,12 @@
 package com.liceu.geom.controllers;
 
-import com.liceu.geom.model.*;
+import com.liceu.geom.model.Game;
+import com.liceu.geom.model.Player;
+import com.liceu.geom.model.Room;
+import com.liceu.geom.services.NoItemExepcition;
 import com.liceu.geom.services.RoomService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,13 +24,15 @@ public class GetCoinController extends HttpServlet {
         Room room = game.getPlayer().getLocation();
         Player player = game.getPlayer();
         String status;
-        if (RoomService.hasCoin(room)) {
+        try{
             status = RoomService.giveCoinToPlayer(room, player);
-        } else {
-            resp.sendRedirect("/nav");
+        } catch (NoItemExepcition e){
+            resp.setStatus(401);
+            req.setAttribute("error", "No hay monedas en esta habitación.");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+            dispatcher.forward(req, resp);
             return;
         }
-        game.setPlayer(player);
         session.setAttribute("game", game);
         session.setAttribute("status", status);
         resp.sendRedirect("/nav");
