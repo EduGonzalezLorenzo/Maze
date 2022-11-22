@@ -25,16 +25,21 @@ public class GetCoinController extends HttpServlet {
         Player player = game.getPlayer();
         String status;
         try{
+            //Se intenta coger moneda. Si no hay se envia error al cliente.
             status = RoomService.giveCoinToPlayer(room, player);
         } catch (NoItemExepcition e){
-            resp.setStatus(401);
-            req.setAttribute("error", "No hay monedas en esta habitación.");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
-            dispatcher.forward(req, resp);
+            error(req, resp);
             return;
         }
         session.setAttribute("game", game);
         session.setAttribute("status", status);
         resp.sendRedirect("/nav");
+    }
+
+    private void error(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setStatus(401);
+        req.setAttribute("error", "No hay monedas en esta habitación.");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+        dispatcher.forward(req, resp);
     }
 }

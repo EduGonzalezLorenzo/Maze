@@ -16,7 +16,7 @@
     <title>Inicio de sesión</title>
 </head>
 
-<body class="text-center bg-primary container">
+<body class="text-center bg-danger container">
     <h1>Error</h1>
     <article class="bg-light row justify-content-center">
         <c:if test ="${not empty error}">

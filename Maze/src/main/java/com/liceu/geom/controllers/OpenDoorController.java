@@ -2,7 +2,9 @@ package com.liceu.geom.controllers;
 
 import com.liceu.geom.model.Game;
 import com.liceu.geom.services.DoorService;
+import com.liceu.geom.services.NoValidDirException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +23,24 @@ public class OpenDoorController extends HttpServlet {
         String status;
         String dir = req.getParameter("dir");
         if (dir != null) {
-            status = DoorService.openDoor(game, dir);
+            try {
+                //Se intenta abrir la puerta. Si la dirección no es valida se envia error al cliente.
+                status = DoorService.openDoor(game, dir);
+            } catch (NoValidDirException e){
+                error(req, resp);
+                return;
+            }
             session.setAttribute("game", game);
             session.setAttribute("status", status);
         }
+        //Se abra o no la puerta se informa al cliente del resultado.
         resp.sendRedirect("/nav");
+    }
+
+    private void error(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setStatus(401);
+        req.setAttribute("error", "Dirección no valida.");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+        dispatcher.forward(req, resp);
     }
 }

@@ -13,10 +13,14 @@ public class RoomService {
     }
 
     public static String giveKeyToPlayer(Room room, Player player) {
+        //Se comprueba si hay llaves en la habitación.
         DoorKey doorKey = ItemService.getKey(room.getItems());
         if (doorKey == null) {
             throw new NoItemExepcition();
         }
+        //Si hay una llave se coge de la habitación y se comprueba si el usuario tiene suficientes monedas.
+        //Si las tiene se da al jugador la llave y se le quitan las monedas que cueste la llave.
+        //Si no las tiene la llave se devuelve a la habitación.
         int keyCost = doorKey.getValue();
         if (ItemService.getCoinsAmount(player.getInventory()) >= keyCost) {
             for (int i = 0; i < keyCost; i++) {
@@ -28,10 +32,10 @@ public class RoomService {
             ItemService.putKeyInRoom(room, doorKey);
             return "Monedas insuficientes!";
         }
-
     }
 
     public static String giveCoinToPlayer(Room room, Player player) {
+        //Se comprueba si hay monedas en la habitación y si hay la quita de la habitación y se la da al jugador.
         String getCoinStatus = ItemService.removeCoin(room.getItems());
         if (getCoinStatus == null) throw new NoItemExepcition();
         else ItemService.addItem(player.getInventory(), new Coin());

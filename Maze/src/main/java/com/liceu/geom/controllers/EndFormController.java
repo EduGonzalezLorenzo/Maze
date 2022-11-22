@@ -1,8 +1,9 @@
 package com.liceu.geom.controllers;
 
+import com.liceu.geom.DAO.DAOException;
 import com.liceu.geom.model.Game;
-import com.liceu.geom.model.Player;
 import com.liceu.geom.services.GameService;
+import com.liceu.geom.services.PlayerService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,20 +25,30 @@ public class EndFormController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String playerName = req.getParameter("playerName");
-        if (playerName.equals("")) {
+        //Se verifica que el usuario introduzca algo válidocomo nombre.
+        if (playerName.trim().equals("")) {
             req.setAttribute("logError", "Introduce un nombre!");
             RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/endform.jsp");
             dispatcher.forward(req, resp);
         } else {
+            //Se guarda al ganador en la base de datos y se borra la partida.
             HttpSession session = req.getSession();
             Game game = (Game) session.getAttribute("game");
-            Player player = game.getPlayer();
-            player.setName(playerName);
-            GameService.addPlayerToWinners(game);
-            game.setVictory(false);
+            try {
+                PlayerService.addPlayerToWinners(game, playerName);
+            } catch (DAOException e){
+                error(req, resp);
+                return;
+            }
             req.setAttribute("gameJson", null);
             session.setAttribute("game", null);
             resp.sendRedirect("/winners");
         }
+    }
+    private void error(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setStatus(401);
+        req.setAttribute("error", "No ha sido posible guardar el usuario en la base de datos.");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+        dispatcher.forward(req, resp);
     }
 }

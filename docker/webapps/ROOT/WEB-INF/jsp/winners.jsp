@@ -16,14 +16,16 @@
     <title>Winners</title>
 </head>
 
-<body class="bg-info">
+<body class="bg-success">
     <main class="container">
         <article id="allFig" class="row justify-content-center">
             <h1 class="text-center">Hall de las leyendas</h1>
-            <form action="/start" method="GET">
-                <input type="submit" value="Nueva partida">    
-            </form>
-             <table class="bg-white">
+            <article class="text-center">
+                <form action="/start" method="GET">
+                    <input class="btn btn-light" type="submit" value="Nueva partida">    
+                </form>
+            </article>
+             <table class="table table-success">
                 <tr style="margin-bottom:10px; border: 1px solid black;">
                     <th style="margin-bottom:10px; border: 1px solid black;">Posición</th>
                     <th style="margin-bottom:10px; border: 1px solid black;">ID</th>

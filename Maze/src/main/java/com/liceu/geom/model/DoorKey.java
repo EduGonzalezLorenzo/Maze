@@ -1,6 +1,6 @@
 package com.liceu.geom.model;
 
-public class DoorKey implements Item{
+public class DoorKey implements Item {
     int id;
     Door door;
 

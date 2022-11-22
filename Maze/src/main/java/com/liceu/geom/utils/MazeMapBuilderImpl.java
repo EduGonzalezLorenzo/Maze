@@ -15,6 +15,7 @@ public class MazeMapBuilderImpl implements MazeMapBuilder {
 
     @Override
     public void buildRoom(int nRoom) {
+        //Se crea una habitación formada por 4 paredes
         Room room = RoomService.createRoom(nRoom);
         room.setSide(Side.Directions.NORTH, new Wall());
         room.setSide(Side.Directions.SOUTH, new Wall());
@@ -30,17 +31,19 @@ public class MazeMapBuilderImpl implements MazeMapBuilder {
 
     @Override
     public void buildDoor(int roomFrom, int roomTo, Side.Directions dir) {
-        Door door = buildDoorInternal(roomFrom, roomTo, dir);
+        buildDoorInternal(roomFrom, roomTo, dir);
     }
 
     @Override
     public void buildDoorWithKey(int roomFrom, int roomTo, Side.Directions dir, DoorKey key) {
         Door door = buildDoorInternal(roomFrom, roomTo, dir);
+        //Define la puerta creada como cerrada y le asigna una puerta.
         door.setOpen(false);
         key.setDoor(door);
     }
 
     private Door buildDoorInternal(int roomFrom, int roomTo, Side.Directions dir) {
+        //Función que crea una puerta abierta que conecta dos habitaciones
         Room r1 = mazeMap.getRoom(roomFrom);
         Room r2 = mazeMap.getRoom(roomTo);
         Door door = DoorService.buildDoor(r1, r2);

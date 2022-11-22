@@ -16,12 +16,12 @@
     <title>MazmorraJuego</title>
 </head>
 
-<body class="text-center bg-primary" onload="drawCanvas();">
+<body class="text-center bg-dark text-light" onload="drawCanvas();">
     <h1>Mazmorra Juego</h1>
-    <article class="bg-light justify-content-center">
-            <canvas id="canvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
+    <article class="justify-content-center">
+            <canvas class="bg-light" id="canvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
     </article>
-    <article class="bg-light justify-content-center">
+    <article class="justify-content-center">
     <a href="/reset">Reiniciar</a>
     </article>
     <script type="application/json" id="gameJson">

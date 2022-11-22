@@ -21,11 +21,11 @@
     <article class="bg-light row justify-content-center">
             <form  action="/start" method="POST">
             <label for="mazeMap">Selecciones un nivel:</label>
-            <select name="mazeMap" id="mazeMap">
+            <select class="form-select form-select-lg mb-3 text-center" name="mazeMap" id="mazeMap">
                 <option value="1">Tutorial</option>
                 <option value="2">Juego</option>
             </select>
-            <input type="submit" value="Jugar">
+            <input class="btn btn-outline-primary" type="submit" value="Jugar">
         </form>
     </article>
 </body>

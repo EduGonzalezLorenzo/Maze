@@ -109,7 +109,7 @@ public class MazeMapService {
         mazeMapBuilder.setStart(3);
         mazeMapBuilder.setGoal(2);
 
-        mazeMapBuilder.setName("Game");
+        mazeMapBuilder.setName("Mazmorra");
 
         mazeMapBuilder.setID(2);
 

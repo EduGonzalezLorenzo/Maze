@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class MySqlDatabase {
+    //Esta clase se encarga de establecer una conexión única entre la base de datos y el servidor.
     static Connection connection;
 
     static Connection getConnection() {

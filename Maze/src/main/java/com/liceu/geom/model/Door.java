@@ -1,7 +1,5 @@
 package com.liceu.geom.model;
 
-import java.util.List;
-
 public class Door implements Side{
     private boolean open = true;
     private Room roomTo, roomFrom;

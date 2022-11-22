@@ -6,3 +6,11 @@
   *{
     font-family: gameFont;
   }
+
+  article{
+    padding: 20px;
+  }
+  h1{
+    padding:30px;
+  }
+  

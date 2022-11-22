@@ -4,6 +4,8 @@ import com.liceu.geom.model.*;
 
 public class SideService {
     public static String enterSide(Player player, Side side) {
+        //Se comprueba si se intenta entrar en un muro o en una puerta.
+        //Si es puerta se comprueba si esta abierta o cerrada.
         if (side instanceof Wall) return "Hay un muro!";
         Door door = (Door) side;
         if (door.isOpen()) {
@@ -16,6 +18,7 @@ public class SideService {
     }
 
     public static Room getOtherRoom(Room location, Door door) {
+        //Se comprueba en cual de las dos habitaciones que conecta la puerta esta el jugador y se le lleva a la otra.
         if (location.getRoomID() == door.getRoomFrom().getRoomID()) return door.getRoomTo();
         return door.getRoomFrom();
     }

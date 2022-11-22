@@ -19,7 +19,7 @@ public class StartController extends HttpServlet {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
         if (game != null) {
-            game.setVictory(false);
+            //Si hay una partida empezada se perderá al acceder a este menú.
             req.setAttribute("gameJson", null);
             session.setAttribute("game", null);
         }
@@ -28,7 +28,8 @@ public class StartController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        //Se genera una partida en función del mapa seleccionado por el usuario.
         int mapId = Integer.parseInt(req.getParameter("mazeMap"));
         Game game = GameService.createNewGame(mapId);
         HttpSession session = req.getSession();

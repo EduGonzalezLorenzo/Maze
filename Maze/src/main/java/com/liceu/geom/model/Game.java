@@ -1,10 +1,6 @@
 package com.liceu.geom.model;
 
-import java.util.Date;
-
 public class Game {
-
-    private int id;
 
     private Player player;
 
@@ -15,14 +11,6 @@ public class Game {
     private long totalTime;
 
     private boolean victory = false;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Player getPlayer() {
         return player;

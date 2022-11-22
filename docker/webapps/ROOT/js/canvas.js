@@ -15,6 +15,7 @@ const DoorOpenVer = new Image();
 const DoorClosedHor = new Image();
 const DoorClosedVer = new Image();
 
+const playerImg = new Image();
 const key = new Image();
 const coin = new Image();
 
@@ -30,6 +31,7 @@ DoorOpenVer.src = "../img/PuertaAbiertaVertical.png";
 DoorClosedHor.src = "../img/PuertaCerradaHorizontal.png";
 DoorClosedVer.src = "../img/PuertaCerradaVertical.png";
 
+playerImg.src = "../img/link.png";
 key.src = "../img/key.png";
 coin.src = "../img/coin.png";
 
@@ -41,6 +43,7 @@ const data = JSON.parse(dataScript);
 function drawCanvas() {
     ctx.font = "gameFont";
     drawArrows();
+    drawPlayer();
     let room = new Object();
     let player = new Object();
     room = data.Room;
@@ -54,6 +57,10 @@ function drawArrows() {
     ctx.drawImage(leftArrow, 620, 540, 50, 50);
     ctx.drawImage(botArrow, 680, 540, 50, 50);
     ctx.drawImage(righttArrow, 740, 540, 50, 50);
+}
+
+function drawPlayer() {
+    ctx.drawImage(playerImg, 0, 0, 100, 150, 325, 250, 120, 120);
 }
 
 function drawCurrentInventory(player) {
@@ -171,12 +178,33 @@ function checkKeyClick(posX, posY) {
 
 function checkArrowClick(posX, posY) {
     if (posX > 680 && posX < 730 && posY > 480 && posY < 540) {
+        moveUp();
         window.location.assign("/nav?dir=N");
     } else if (posX > 620 && posX < 670 && posY > 540 && posY < 590) {
+        moveLeft();
         window.location.assign("/nav?dir=W");
     } else if (posX > 680 && posX < 730 && posY > 540 && posY < 590) {
+        moveDown();
         window.location.assign("/nav?dir=S");
     } else if (posX > 740 && posX < 790 && posY > 540 && posY < 590) {
+        moveRight();
         window.location.assign("/nav?dir=E");
     }
+}
+
+function moveUp(){
+    ctx.drawImage(playerImg, 5, 10, 100, 150, 350, 250, 100, 100);
+    // img,sx,sy,swidth,sheight,x,y,width,height
+}
+function moveLeft(){
+    ctx.drawImage(playerImg, 5, 10, 100, 150, 350, 250, 100, 100);
+    // img,sx,sy,swidth,sheight,x,y,width,height
+}
+function moveDown(){
+    ctx.drawImage(playerImg, 5, 10, 100, 150, 350, 250, 100, 100);
+    // img,sx,sy,swidth,sheight,x,y,width,height
+}
+function moveRight(){
+    ctx.drawImage(playerImg, 5, 10, 100, 150, 350, 250, 100, 100);
+    // img,sx,sy,swidth,sheight,x,y,width,height
 }

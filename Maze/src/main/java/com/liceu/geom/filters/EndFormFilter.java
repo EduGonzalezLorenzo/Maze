@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/endform"})
+//Este filtro hace que solo se pueda acceder a /endform cuando la partida activa ha sido superada con exito.
+//Si no hay partida o la hay pero no se ha gandado no se podra entrar
 public class EndFormFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/nav", "/getcoin", "/getkey", "/open", "/reset"})
+//Este filtro impide acceder a las url que interactuan con la partida activa si no hay una partida activa.
 public class GameFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
