@@ -60,7 +60,7 @@ function drawArrows() {
 }
 
 function drawPlayer() {
-    ctx.drawImage(playerImg, 10, 0, 100, 140, 325, 250, 120, 120);
+    ctx.drawImage(playerImg, 10, 0, 100, 140, 225, 215, 120, 120);
 }
 
 function drawCurrentInventory(player) {
@@ -128,6 +128,7 @@ function clickAnalizer() {
     const boundingRect = canvas.getBoundingClientRect();
     const posX = (Math.floor(event.clientX - boundingRect.left));
     const posY = (Math.floor(event.clientY - boundingRect.top));
+    console.log(posX +"/" + posY)
     let game = new Object();
     game = data.Game;
     if (game.gameStatus == true) {
@@ -178,33 +179,137 @@ function checkKeyClick(posX, posY) {
 
 function checkArrowClick(posX, posY) {
     if (posX > 680 && posX < 730 && posY > 480 && posY < 540) {
-        moveUp();
-        window.location.assign("/nav?dir=N");
+        ctx.clearRect(90, 80, 400, 30);
+        window.requestAnimationFrame(moveUp);
     } else if (posX > 620 && posX < 670 && posY > 540 && posY < 590) {
-        moveLeft();
-        window.location.assign("/nav?dir=W");
+        ctx.clearRect(90, 80, 400, 30);
+        window.requestAnimationFrame(moveLeft);
     } else if (posX > 680 && posX < 730 && posY > 540 && posY < 590) {
-        moveDown();
-        window.location.assign("/nav?dir=S");
+        ctx.clearRect(90, 80, 400, 30);
+        window.requestAnimationFrame(moveDown);
     } else if (posX > 740 && posX < 790 && posY > 540 && posY < 590) {
-        moveRight();
-        window.location.assign("/nav?dir=E");
+        ctx.clearRect(90, 80, 400, 30);
+        window.requestAnimationFrame(moveRight);
     }
 }
 
-function moveUp(){
-    ctx.drawImage(playerImg, 5, 10, 100, 150, 350, 250, 100, 100);
-    // img,sx,sy,swidth,sheight,x,y,width,height
+//Variables y funciones de animación
+let start;
+let previousTimeStamp;
+let done = false;
+let frame = 1;
+
+function moveUp(timestamp) {
+    if (start === undefined) {
+        start = timestamp;
+    }
+    const elapsed = timestamp - start;
+
+    if (previousTimeStamp !== timestamp) {
+        const count = Math.floor(0.1 * elapsed, 200);
+        ctx.clearRect(225, 215 - count, 120, 120);
+        ctx.drawImage(playerImg, 242 * frame, 780, 100, 140, 225, 215 - count, 120, 120);
+        if (count % 20 == 0) {
+            frame++;
+            if (frame > 4) {
+                frame = 1;
+            }
+        }
+        if (count === 150) done = true;
+    }
+
+    if (elapsed < 4000) {
+        previousTimeStamp = timestamp;
+        if (!done) {
+            window.requestAnimationFrame(moveUp);
+        } else {
+            window.location.assign("/nav?dir=N");
+        }
+    }
 }
-function moveLeft(){
-    ctx.drawImage(playerImg, 5, 10, 100, 150, 350, 250, 100, 100);
-    // img,sx,sy,swidth,sheight,x,y,width,height
+function moveLeft(timestamp) {
+    if (start === undefined) {
+        start = timestamp;
+    }
+    const elapsed = timestamp - start;
+
+    if (previousTimeStamp !== timestamp) {
+        const count = Math.floor(0.1 * elapsed, 200);
+        ctx.clearRect(225 - count, 215, 130, 130);
+        ctx.drawImage(playerImg, 242 * frame, 650, 100, 130, 225 - count, 215, 120, 120);
+        if (count % 20 == 0) {
+            frame++;
+            if (frame > 4) {
+                frame = 1;
+            }
+        }
+        if (count === 150) done = true;
+    }
+
+    if (elapsed < 4000) {
+        previousTimeStamp = timestamp;
+        if (!done) {
+            window.requestAnimationFrame(moveLeft);
+        } else {
+            window.location.assign("/nav?dir=W");
+        }
+    }
 }
-function moveDown(){
-    ctx.drawImage(playerImg, 5, 10, 100, 150, 350, 250, 100, 100);
-    // img,sx,sy,swidth,sheight,x,y,width,height
+
+function moveDown(timestamp) {
+    if (start === undefined) {
+        start = timestamp;
+    }
+    const elapsed = timestamp - start;
+
+    if (previousTimeStamp !== timestamp) {
+        const count = Math.floor(0.1 * elapsed, 200);
+        ctx.clearRect(225, 215 + count, 120, 120);
+        ctx.drawImage(playerImg, 242 * frame, 520, 100, 140, 225, 215 + count, 120, 120);
+        if (count % 20 == 0) {
+            frame++;
+            if (frame > 4) {
+                frame = 1;
+            }
+        }
+        if (count === 150) done = true;
+    }
+
+    if (elapsed < 4000) {
+        previousTimeStamp = timestamp;
+        if (!done) {
+            window.requestAnimationFrame(moveDown);
+        } else {
+            window.location.assign("/nav?dir=S");
+        }
+    }
 }
-function moveRight(){
-    ctx.drawImage(playerImg, 5, 10, 100, 150, 350, 250, 100, 100);
-    // img,sx,sy,swidth,sheight,x,y,width,height
+
+function moveRight(timestamp) {
+    if (start === undefined) {
+        start = timestamp;
+    }
+    const elapsed = timestamp - start;
+
+    if (previousTimeStamp !== timestamp) {
+        const count = Math.floor(0.1 * elapsed, 200);
+        ctx.clearRect(215 + count, 215, 130, 130);
+        ctx.drawImage(playerImg, 242 * frame, 920, 100, 130, 225 + count, 215, 120, 120);
+        if (count % 20 == 0) {
+            frame++;
+            if (frame > 4) {
+                frame = 1;
+            }
+        }
+        if (count === 150) done = true;
+    }
+
+    if (elapsed < 4000) {
+        previousTimeStamp = timestamp;
+        if (!done) {
+            window.requestAnimationFrame(moveRight);
+        } else {
+            window.location.assign("/nav?dir=E");
+        }
+    }
 }

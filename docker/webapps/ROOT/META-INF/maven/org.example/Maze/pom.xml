@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.example</groupId>
   <artifactId>Maze</artifactId>
@@ -15,7 +15,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.13.2</version>
+      <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -31,7 +31,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.30</version>
+      <version>8.0.31</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
     <dependency>
@@ -44,7 +44,7 @@
   <build>
     <finalName>ROOT</finalName>
     <pluginManagement>
-      <!-- lock down plugins versions to avoid using Maven defaults (maybe moved to parent pom) -->
+      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -83,23 +83,25 @@
             <container>
               <containerId>tomcat7x</containerId>
               <type>installed</type>
-              <home>C:\Users\eduar\OneDrive\Escritorio\Proyectos\Maze\docker</home>
+              <home>C:\Users\eduar\Desktop\GitHub\MazeGame\Maze\docker</home>
             </container>
             <configuration>
               <type>existing</type>
-              <home>C:\Users\eduar\OneDrive\Escritorio\Proyectos\Maze\docker</home>
+              <home>C:\Users\eduar\Desktop\GitHub\MazeGame\Maze\docker</home>
             </configuration>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <source>14</source>
-            <target>14</target>
           </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>14</source>
+          <target>14</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
