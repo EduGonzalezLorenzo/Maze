@@ -128,7 +128,6 @@ function clickAnalizer() {
     const boundingRect = canvas.getBoundingClientRect();
     const posX = (Math.floor(event.clientX - boundingRect.left));
     const posY = (Math.floor(event.clientY - boundingRect.top));
-    console.log(posX +"/" + posY)
     let game = new Object();
     game = data.Game;
     if (game.gameStatus == true) {
@@ -182,13 +181,13 @@ function checkArrowClick(posX, posY) {
         ctx.clearRect(90, 80, 400, 30);
         window.requestAnimationFrame(moveUp);
     } else if (posX > 620 && posX < 670 && posY > 540 && posY < 590) {
-        ctx.clearRect(100, 100, 250, 20);
+        ctx.clearRect(90, 80, 400, 30);
         window.requestAnimationFrame(moveLeft);
     } else if (posX > 680 && posX < 730 && posY > 540 && posY < 590) {
-        ctx.clearRect(100, 100, 250, 20);
+        ctx.clearRect(90, 80, 400, 30);
         window.requestAnimationFrame(moveDown);
     } else if (posX > 740 && posX < 790 && posY > 540 && posY < 590) {
-        ctx.clearRect(100, 100, 250, 20);
+        ctx.clearRect(90, 80, 400, 30);
         window.requestAnimationFrame(moveRight);
     }
 }
@@ -198,27 +197,31 @@ let start;
 let previousTimeStamp;
 let done = false;
 let frame = 1;
+let lag = 0;
 
 function moveUp(timestamp) {
+    lag++;
+    console.log("up");
     if (start === undefined) {
         start = timestamp;
     }
     const elapsed = timestamp - start;
 
     if (previousTimeStamp !== timestamp) {
-        const count = Math.floor(0.1 * elapsed, 200);
-        ctx.clearRect(225, 215 - count, 120, 120);
-        ctx.drawImage(playerImg, 242 * frame, 780, 100, 140, 225, 215 - count, 120, 120);
-        if (count % 20 == 0) {
+        const distance = Math.floor(0.2 * elapsed, 150);
+        ctx.clearRect(225, 215 - distance, 120, 120);
+        ctx.drawImage(playerImg, 242 * frame, 780, 100, 140, 225, 215 - distance, 120, 120);
+        if (lag > 5) {
             frame++;
             if (frame > 4) {
                 frame = 1;
             }
+            lag = 0;
         }
-        if (count === 150) done = true;
+        if (distance >= 150) done = true;
     }
 
-    if (elapsed < 4000) {
+    if (elapsed < 2000) {
         previousTimeStamp = timestamp;
         if (!done) {
             window.requestAnimationFrame(moveUp);
@@ -227,26 +230,30 @@ function moveUp(timestamp) {
         }
     }
 }
+
 function moveLeft(timestamp) {
+    lag++;
+    console.log("left");
     if (start === undefined) {
         start = timestamp;
     }
     const elapsed = timestamp - start;
 
     if (previousTimeStamp !== timestamp) {
-        const count = Math.floor(0.1 * elapsed, 200);
-        ctx.clearRect(225 - count, 215, 130, 130);
-        ctx.drawImage(playerImg, 242 * frame, 650, 100, 130, 225 - count, 215, 120, 120);
-        if (count % 20 == 0) {
+        const distance = Math.floor(0.2 * elapsed, 150);
+        ctx.clearRect(225 - distance, 215, 130, 130);
+        ctx.drawImage(playerImg, 242 * frame, 650, 100, 130, 225 - distance, 215, 120, 120);
+        if (lag > 5) {
             frame++;
             if (frame > 4) {
                 frame = 1;
             }
+            lag = 0;
         }
-        if (count === 150) done = true;
+        if (distance >= 150) done = true;
     }
 
-    if (elapsed < 4000) {
+    if (elapsed < 2000) {
         previousTimeStamp = timestamp;
         if (!done) {
             window.requestAnimationFrame(moveLeft);
@@ -257,25 +264,28 @@ function moveLeft(timestamp) {
 }
 
 function moveDown(timestamp) {
+    lag++;
+    console.log("down");
     if (start === undefined) {
         start = timestamp;
     }
     const elapsed = timestamp - start;
 
     if (previousTimeStamp !== timestamp) {
-        const count = Math.floor(0.1 * elapsed, 200);
-        ctx.clearRect(225, 215 + count, 120, 120);
-        ctx.drawImage(playerImg, 242 * frame, 520, 100, 140, 225, 215 + count, 120, 120);
-        if (count % 20 == 0) {
+        const distance = Math.floor(0.2 * elapsed, 150);
+        ctx.clearRect(225, 215 + distance, 120, 120);
+        ctx.drawImage(playerImg, 242 * frame, 520, 100, 140, 225, 215 + distance, 120, 120);
+        if (lag > 4) {
             frame++;
             if (frame > 4) {
                 frame = 1;
             }
+            lag = 0;
         }
-        if (count === 150) done = true;
+        if (distance >= 150) done = true;
     }
 
-    if (elapsed < 4000) {
+    if (elapsed < 2000) {
         previousTimeStamp = timestamp;
         if (!done) {
             window.requestAnimationFrame(moveDown);
@@ -286,25 +296,28 @@ function moveDown(timestamp) {
 }
 
 function moveRight(timestamp) {
+    lag++;
+    console.log("right");
     if (start === undefined) {
         start = timestamp;
     }
     const elapsed = timestamp - start;
 
     if (previousTimeStamp !== timestamp) {
-        const count = Math.floor(0.1 * elapsed, 200);
-        ctx.clearRect(215 + count, 215, 130, 130);
-        ctx.drawImage(playerImg, 242 * frame, 920, 100, 130, 225 + count, 215, 120, 120);
-        if (count % 20 == 0) {
+        const distance = Math.floor(0.2 * elapsed, 150);
+        ctx.clearRect(215 + distance, 215, 130, 130);
+        ctx.drawImage(playerImg, 242 * frame, 920, 100, 130, 225 + distance, 215, 120, 120);
+        if (lag > 5) {
             frame++;
             if (frame > 4) {
                 frame = 1;
             }
+            lag = 0;
         }
-        if (count === 150) done = true;
+        if (distance >= 150) done = true;
     }
 
-    if (elapsed < 4000) {
+    if (elapsed < 2000) {
         previousTimeStamp = timestamp;
         if (!done) {
             window.requestAnimationFrame(moveRight);
