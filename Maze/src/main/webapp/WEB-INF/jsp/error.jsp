@@ -19,9 +19,7 @@
 <body class="text-center bg-danger container">
     <h1>Error</h1>
     <article class="bg-light row justify-content-center">
-        <c:if test ="${not empty error}">
-            <p class="bg-light text-danger">${error}</p>
-        </c:if>
+        <p class="bg-light text-danger">${error}</p>
     </article>
 </body>
 </html>
