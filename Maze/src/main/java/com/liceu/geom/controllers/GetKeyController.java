@@ -21,6 +21,7 @@ public class GetKeyController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
+
         Room room = game.getPlayer().getLocation();
         Player player = game.getPlayer();
         String status;

@@ -275,7 +275,7 @@ function moveDown(timestamp) {
         const distance = Math.floor(0.2 * elapsed, 150);
         ctx.clearRect(225, 215 + distance, 120, 120);
         ctx.drawImage(playerImg, 242 * frame, 520, 100, 140, 225, 215 + distance, 120, 120);
-        if (lag > 4) {
+        if (lag > 5) {
             frame++;
             if (frame > 4) {
                 frame = 1;
