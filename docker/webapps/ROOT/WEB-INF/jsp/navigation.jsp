@@ -24,6 +24,9 @@
     <article class="justify-content-center">
     <a href="/reset">Reiniciar</a>
     </article>
+        <article class="justify-content-center">
+    <a href="/start">Salir del juego</a>
+    </article>
     <script type="application/json" id="gameJson">
         ${gameJson}
     </script>

@@ -22,7 +22,7 @@ public class NavController extends HttpServlet {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
         Object status = session.getAttribute("status");
-        String newStatus = null;
+        String newStatus;
         String dir = req.getParameter("dir");
         try {
             // Se comprueba si hay dirección. Si la hay se intenta mover en esa dirección.
