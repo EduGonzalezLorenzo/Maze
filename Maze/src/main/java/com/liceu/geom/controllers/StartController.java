@@ -17,12 +17,9 @@ public class StartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Game game = (Game) session.getAttribute("game");
-        if (game != null) {
-            //Si hay una partida empezada se perderá al acceder a este menú.
-            req.setAttribute("gameJson", null);
-            session.setAttribute("game", null);
-        }
+        //Si hay una partida empezada se perderá al acceder a este menú.
+        req.setAttribute("gameJson", null);
+        session.setAttribute("game", null);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/start.jsp");
         dispatcher.forward(req, resp);
     }

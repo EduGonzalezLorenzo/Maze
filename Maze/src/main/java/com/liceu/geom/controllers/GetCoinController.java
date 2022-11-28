@@ -21,12 +21,10 @@ public class GetCoinController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
-        Room room = game.getPlayer().getLocation();
-        Player player = game.getPlayer();
         String status;
         try{
             //Se intenta coger moneda. Si no hay se envia error al cliente.
-            status = RoomService.giveCoinToPlayer(room, player);
+            status = RoomService.giveCoinToPlayer(game);
         } catch (NoItemExepcition e){
             error(req, resp);
             return;

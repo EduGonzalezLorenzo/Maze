@@ -12,6 +12,7 @@ public class DoorService {
 
     public static String openDoor(Game game, String dir) {
         //Si la orientación no es valido devuelve error.
+        if (dir == null) return "";
         if (SideService.getDirection(dir) == null) throw new NoValidDirException();
         //Si el lado es valido se comprueba si es muro o puerta
         Side.Directions side = SideService.getDirection(dir);

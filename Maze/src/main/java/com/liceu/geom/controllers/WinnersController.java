@@ -17,14 +17,10 @@ import java.io.IOException;
 public class WinnersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Se borra la sesión actual.
+        //Se borra la sesión actual (si hay una partida empezada se perderá).
         HttpSession session = req.getSession();
-        Game game = (Game) session.getAttribute("game");
-        if (game != null) {
-            //Si hay una partida empezada se perderá al acceder a este menú.
-            req.setAttribute("gameJson", null);
-            session.setAttribute("game", null);
-        }
+        req.setAttribute("gameJson", null);
+        session.setAttribute("game", null);
         //Se obtiene la lista de ganadores de la base de datos y se envia al cliente.
         req.setAttribute("winners", WinnerService.getWinners());
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/winners.jsp");

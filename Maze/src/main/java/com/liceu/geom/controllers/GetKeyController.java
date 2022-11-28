@@ -22,12 +22,10 @@ public class GetKeyController extends HttpServlet {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
 
-        Room room = game.getPlayer().getLocation();
-        Player player = game.getPlayer();
         String status;
         try {
             //Se intenta coger llave. Si no hay se envia error al cliente.
-            status = RoomService.giveKeyToPlayer(room, player);
+            status = RoomService.giveKeyToPlayer(game);
         }catch (NoItemExepcition e){
             error(req, resp);
             return;

@@ -1,9 +1,6 @@
 package com.liceu.geom.services;
 
-import com.liceu.geom.model.Coin;
-import com.liceu.geom.model.DoorKey;
-import com.liceu.geom.model.Player;
-import com.liceu.geom.model.Room;
+import com.liceu.geom.model.*;
 
 public class RoomService {
     public static Room createRoom(int roomID) {
@@ -12,7 +9,9 @@ public class RoomService {
         return room;
     }
 
-    public static String giveKeyToPlayer(Room room, Player player) {
+    public static String giveKeyToPlayer(Game game) {
+        Room room = game.getPlayer().getLocation();
+        Player player = game.getPlayer();
         //Se comprueba si hay llaves en la habitación.
         DoorKey doorKey = ItemService.getKey(room.getItems());
         if (doorKey == null) {
@@ -34,7 +33,9 @@ public class RoomService {
         }
     }
 
-    public static String giveCoinToPlayer(Room room, Player player) {
+    public static String giveCoinToPlayer(Game game) {
+        Room room = game.getPlayer().getLocation();
+        Player player = game.getPlayer();
         //Se comprueba si hay monedas en la habitación y si hay la quita de la habitación y se la da al jugador.
         String getCoinStatus = ItemService.removeCoin(room.getItems());
         if (getCoinStatus == null) throw new NoItemExepcition();

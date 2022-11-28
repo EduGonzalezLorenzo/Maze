@@ -22,17 +22,15 @@ public class OpenDoorController extends HttpServlet {
         Game game = (Game) session.getAttribute("game");
         String status;
         String dir = req.getParameter("dir");
-        if (dir != null) {
-            try {
-                //Se intenta abrir la puerta. Si la dirección no es valida se envia error al cliente.
-                status = DoorService.openDoor(game, dir);
-            } catch (NoValidDirException e){
-                error(req, resp);
-                return;
-            }
-            session.setAttribute("game", game);
-            session.setAttribute("status", status);
+        try {
+            //Se intenta abrir la puerta. Si la dirección no es valida se envia error al cliente.
+            status = DoorService.openDoor(game, dir);
+        } catch (NoValidDirException e) {
+            error(req, resp);
+            return;
         }
+        session.setAttribute("game", game);
+        session.setAttribute("status", status);
         //Se abra o no la puerta se informa al cliente del resultado.
         resp.sendRedirect("/nav");
     }

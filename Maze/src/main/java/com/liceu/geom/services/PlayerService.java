@@ -21,7 +21,8 @@ public class PlayerService {
         return null;
     }
 
-    public static String movePlayer(Game game, String dir) {
+    public static String movePlayer(Game game, String dir, Object status) {
+        if (dir == null) return status == null ? "" : status.toString();
         //Si la orientación no es valido devuelve error.
         if (SideService.getDirection(dir) == null) throw new NoValidDirException();
         // Con dirección valida el jugador intenta moverse en esa dirección
@@ -29,7 +30,10 @@ public class PlayerService {
         Player player = game.getPlayer();
         Room room = player.getLocation();
         Side roomSide = room.getSide(direction);
-        return SideService.enterSide(player, roomSide);
+        String newStatus = SideService.enterSide(player, roomSide);
+        if (player.getLocation().isGoal()) return GameService.endGame(game);
+        else return newStatus;
+
     }
 
     public static void addPlayerToWinners(Game game, String playerName) {
@@ -38,7 +42,7 @@ public class PlayerService {
         player.setName(playerName);
         WinnersDao winnersDao = new WinnersDaoMySql();
         Winner winner = WinnerService.generateWinner(game);
-        if(winnersDao.addToWinners(winner) == null) throw new DAOException();
+        if (winnersDao.addToWinners(winner) == null) throw new DAOException();
         game.setVictory(false);
     }
 }

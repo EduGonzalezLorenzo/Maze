@@ -21,24 +21,19 @@ public class NavController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Game game = (Game) session.getAttribute("game");
-        Player player = game.getPlayer();
-        String status = null;
-
-        if (session.getAttribute("status") != null) status = session.getAttribute("status").toString();
+        Object status = session.getAttribute("status");
+        String newStatus = null;
         String dir = req.getParameter("dir");
         try {
             // Se comprueba si hay dirección. Si la hay se intenta mover en esa dirección.
             // Si la dirección no es valida se envia error al cliente.
-            if (dir != null) status = PlayerService.movePlayer(game, dir);
-        } catch (NoValidDirException e){
+            newStatus = PlayerService.movePlayer(game, dir, status);
+        } catch (NoValidDirException e) {
             error(req, resp);
             return;
         }
-        if (player.getLocation().isGoal()) {
-            status = GameService.endGame(game);;
-        }
         // Se mueva o no el jugador se enviara al cliente la sala actual para que la pinte.
-        req.setAttribute("gameJson", GameService.getGameJson(game, status));
+        req.setAttribute("gameJson", GameService.getGameJson(game, newStatus));
         session.setAttribute("status", null);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/navigation.jsp");
         dispatcher.forward(req, resp);
